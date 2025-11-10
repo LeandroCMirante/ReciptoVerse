@@ -24,19 +24,32 @@ const Team = () => {
     },
   ];
 
+  const partners = [
+    {
+      name: "HashPack",
+      logo: "/images/partners/hashpack.png",
+      website: "https://www.hashpack.app/",
+      description: "Official Hedera Wallet Partner",
+    },
+    {
+      name: "Hedera Foundation",
+      logo: "/images/partners/Hedera_Foundation_Logo.jpg",
+      website: "https://hedera.com/",
+      description: "Blockchain Infrastructure Partner",
+    },
+  ];
+
   return (
     <section className="py-20 bg-slate-900/75">
       <div className="container mx-auto px-6">
+        {/* Team Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white">
-            Meet the Team & Partners
-          </h2>
+          <h2 className="text-4xl font-bold text-white">Meet the Team</h2>
           <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-            The dedicated individuals and partners building the future of
-            commerce.
+            The dedicated individuals building the future of commerce.
           </p>
         </div>
-        <div className="flex justify-center flex-wrap gap-8">
+        <div className="flex justify-center flex-wrap gap-8 mb-20">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -83,6 +96,56 @@ const Team = () => {
               </a>
             </div>
           ))}
+        </div>
+
+        {/* Partners Section */}
+        <div className="border-t border-slate-700 pt-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-3">
+              Official Partners
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Proud to collaborate with industry-leading organizations in the
+              Hedera ecosystem.
+            </p>
+          </div>
+          <div className="flex justify-center flex-wrap gap-12 items-center">
+            {partners.map((partner, index) => (
+              <a
+                key={index}
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <div className="bg-slate-800/50 rounded-xl p-8 w-72 text-center hover:bg-slate-800 transition-all duration-300 border border-slate-700 hover:border-cyan-500/50">
+                  <div className="h-32 flex items-center justify-center mb-6">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      className="max-h-full max-w-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                        e.target.nextSibling.style.display = "flex";
+                      }}
+                    />
+                    <div
+                      className="h-32 bg-slate-700/50 rounded-lg items-center justify-center text-slate-400 text-xl font-bold px-4"
+                      style={{ display: "none" }}
+                    >
+                      {partner.name}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                    {partner.name}
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    {partner.description}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
